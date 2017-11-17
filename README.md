@@ -1,2 +1,2 @@
 # osgPong
-OpenSceneGraph-based Pong
+OpenSceneGraph-based Pong-like game
