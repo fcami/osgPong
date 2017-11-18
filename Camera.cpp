@@ -1,5 +1,5 @@
 #include <osgViewer/Viewer>
-#include "Camera"
+#include "Camera.hpp"
 
 HUDCamera::HUDCamera( double left, double right, double bottom, double top )
 {

@@ -3,10 +3,10 @@
 #include <osg/Node>
 #include <osgViewer/Viewer>
 
-#include "FindNamedNode"
-#include "Camera"
-#include "GameController"
-#include "PongGame"
+#include "FindNamedNode.hpp"
+#include "Camera.hpp"
+#include "GameController.hpp"
+#include "PongGame.hpp"
 
 #include <iostream>
 

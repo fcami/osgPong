@@ -1,7 +1,7 @@
 #include <osg/NodeVisitor>
 #include <osg/Node>
 
-#include "FindNamedNode"
+#include "FindNamedNode.hpp"
 
 FindNamedNode::FindNamedNode( const std::string& name )
       : osg::NodeVisitor( osg::NodeVisitor::TRAVERSE_ALL_CHILDREN ),

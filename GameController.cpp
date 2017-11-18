@@ -1,9 +1,9 @@
 
 #include <osgViewer/Viewer>
 
-#include "GameController"
-#include "Player"
-#include "FindNamedNode"
+#include "GameController.hpp"
+#include "Player.hpp"
+#include "FindNamedNode.hpp"
 
 #include <iostream>
 using namespace std;

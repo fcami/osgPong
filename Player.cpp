@@ -2,7 +2,7 @@
 #include <osg/Geometry>
 #include <osg/Geode>
 
-#include "Player"
+#include "Player.hpp"
 
 #include <iostream>
 

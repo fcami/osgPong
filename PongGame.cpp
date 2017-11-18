@@ -1,6 +1,6 @@
 
-#include "Player"
-#include "PongGame"
+#include "Player.hpp"
+#include "PongGame.hpp"
 
 #include <iostream>
 using namespace std;
