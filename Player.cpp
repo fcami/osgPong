@@ -82,15 +82,16 @@ bool Player::update( const osgGA::GUIEventAdapter& ea, osg::Group* root )
 		}
 		else
 		{	
-			if ( pos.x()<halfW || pos.x()>160-halfW ) // TODO: remove hardcoded 160
-			{
-				_speedVec = osg::Vec3( -1 * _speedVec[0], _speedVec[1], _speedVec[2]);
-			}
-
 			if ( pos.y()<halfH || pos.y()>90-halfH ) // TODO: remove harcoded 90
 			{
 				_speedVec = osg::Vec3( _speedVec[0], -1 * _speedVec[1], _speedVec[2]);
 			}
+			else if ( pos.x()<halfW || pos.x()>160-halfW ) // TODO: remove hardcoded 160
+			// WIP - this should be replaced by score management instead
+			{
+				_speedVec = osg::Vec3( -1 * _speedVec[0], _speedVec[1], _speedVec[2]);
+			}
+
 		}
 		break;
 	
@@ -100,13 +101,39 @@ bool Player::update( const osgGA::GUIEventAdapter& ea, osg::Group* root )
     // only update for new frames
     if ( ea.getEventType() !=osgGA::GUIEventAdapter::FRAME ) 
         return true;
-
 	pos += _speedVec;
 	setMatrix( osg::Matrix::translate(pos) );
 	return true;
 
     
 }
+
+bool Player::reboundH( const osgGA::GUIEventAdapter& ea, osg::Group* root )
+{
+	_speedVec = osg::Vec3( -1 * _speedVec[0], _speedVec[1], _speedVec[2]);	
+    osg::Vec3 pos = getMatrix().getTrans();
+    // DUP
+    if ( ea.getEventType() !=osgGA::GUIEventAdapter::FRAME ) 
+        return false;
+	pos += _speedVec;
+	setMatrix( osg::Matrix::translate(pos) );
+	return true;
+}
+
+bool Player::reboundV( const osgGA::GUIEventAdapter& ea, osg::Group* root )
+{
+	_speedVec = osg::Vec3( _speedVec[0], -1 * _speedVec[1], _speedVec[2]);	
+    osg::Vec3 pos = getMatrix().getTrans();
+    // DUP
+    if ( ea.getEventType() !=osgGA::GUIEventAdapter::FRAME ) 
+        return false;
+	pos += _speedVec;
+	setMatrix( osg::Matrix::translate(pos) );
+	return true;
+}
+
+
+
 
 bool Player::intersectsWith( Player* player ) const
 {

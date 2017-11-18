@@ -27,10 +27,9 @@ bool GameController::handle( const osgGA::GUIEventAdapter& ea, osgGA::GUIActionA
 	osg::ref_ptr<Player> player2 = static_cast<Player*> (findPlayer2.getNode());
 	player2->update(ea, _root.get());
 	
-	// TODO: insert collision detection code here
-	
-	if ( ball->intersectsWith(player1) )
+	// WIP: collision detection, 	
+	if ( ball->intersectsWith(player1) || ball->intersectsWith(player2) )
 	{
-		cout << "collision detected!" << endl;
+		ball->reboundH(ea, _root.get());
 	}
 }
