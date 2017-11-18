@@ -132,8 +132,7 @@ bool Player::reboundV( const osgGA::GUIEventAdapter& ea, osg::Group* root )
 	return true;
 }
 
-
-
+bool heightTarget() {}
 
 bool Player::intersectsWith( Player* player ) const
 {

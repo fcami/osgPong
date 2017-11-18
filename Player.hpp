@@ -27,9 +27,10 @@ public:
     
     bool update( const osgGA::GUIEventAdapter& ea, osg::Group* root );
 
-// these two make no sense except for a ball. Use polymorphism at some point.
+// these two make no sense except for a ball.
     bool reboundH( const osgGA::GUIEventAdapter& ea, osg::Group* root );
     bool reboundV( const osgGA::GUIEventAdapter& ea, osg::Group* root );
+    bool heightTarget();
 
     bool intersectsWith( Player* player ) const;
     
