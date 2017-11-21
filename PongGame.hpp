@@ -1,6 +1,8 @@
 
 #include <osgViewer/Viewer>
 #include <osg/Node>
+#include <osgText/Font>
+#include <osgText/Text>
 
 // TODO: compose with GameController
 class PongGame

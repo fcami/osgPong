@@ -7,6 +7,11 @@
 #include "Ball.hpp"
 #include "RealPlayer.hpp"
 
+//#include <osg/Node>
+//#include <osgViewer/Viewer>
+#include <osgText/Text>
+
+
 #include <iostream>
 using namespace std;
 
@@ -20,10 +25,11 @@ bool GameController::handle( const osgGA::GUIEventAdapter& ea, osgGA::GUIActionA
 	osg::ref_ptr<RealPlayer> player1 = static_cast<RealPlayer*> (findPlayer1.getNode());
 	player1->update(ea, _root.get());
 
+	bool fall = false;
 	FindNamedNode findBall("ball");
 	_root->accept(findBall);
 	osg::ref_ptr<Ball> ball = static_cast<Ball*> (findBall.getNode());
-	bool fall = ball->update(ea, _root.get());
+	fall = ball->update(ea, _root.get());
 
 	FindNamedNode findPlayer2("player2");
 	_root->accept(findPlayer2);
@@ -35,6 +41,7 @@ bool GameController::handle( const osgGA::GUIEventAdapter& ea, osgGA::GUIActionA
 	// WIP: collision detection, 	
 	if ( ball->intersectsWith(player1) || ball->intersectsWith(player2) )
 	{
+		cout << "intersection detected" <<endl;
 		ball->reboundH(ea, _root.get());
 	}
 	
@@ -53,11 +60,18 @@ bool GameController::handle( const osgGA::GUIEventAdapter& ea, osgGA::GUIActionA
 			player1->incrScore();
 		}
 		cout << "score: player1: " << player1->getScore() << " player2: " << player2->getScore() << endl;
+
+		FindNamedNode findScore("score");
+		_root->accept(findScore);
+		osg::ref_ptr<osgText::Text> score = static_cast<osgText::Text*> (findScore.getNode());
+		score->setText(std::to_string(player1->getScore())+"   "+std::to_string(player2->getScore()));
+		
 		if ( player1->getScore() == 11 || player1->getScore() == 11 )
 		{
 			cout << "resetting scores" << endl;
 			player1->resetScore();
 			player2->resetScore();
+			score->setText(player1->getScore()+"   "+player2->getScore());
 		}
 	}
 }

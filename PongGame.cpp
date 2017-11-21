@@ -46,7 +46,13 @@ osg::ref_ptr<osg::Node> PongGame::createTitleGroup()
 osg::ref_ptr<osg::Node> PongGame::createScoreGroup()
 {
 	osg::ref_ptr<osg::Group> scoreGroup = new osg::Group;
-
+    osg::ref_ptr<osgText::Text> score = new osgText::Text;
+    score->setFont("fonts/times.ttf");
+    score->setAxisAlignment(osgText::Text::XY_PLANE);
+    score->setText("0   0");
+	score->setName("score");
+	score->setPosition(osg::Vec3(25.0f,50.0f,0.0f)); // TODO: un-hardcode placement
+	scoreGroup->addChild( score.get() );    
 	return scoreGroup.get();
 }
 
@@ -56,7 +62,7 @@ osg::ref_ptr<osg::Node> PongGame::createGameScene()
 	gameSwitch->setName("gameSwitch");
 
     gameSwitch->addChild( createGameGroup(), true );
-    gameSwitch->addChild( createScoreGroup(), false );
+    gameSwitch->addChild( createScoreGroup(), true );
     gameSwitch->addChild( createTitleGroup(), false );
 	
 	return gameSwitch.get();
