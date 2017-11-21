@@ -82,14 +82,21 @@ bool Player::update( const osgGA::GUIEventAdapter& ea, osg::Group* root )
 		}
 		else
 		{	
-			if ( pos.y()<halfH || pos.y()>90-halfH ) // TODO: remove harcoded 90
+			if ( _speedVec.y() + pos.y()<halfH || _speedVec.y() + pos.y()>90-halfH ) // TODO: remove harcoded 90
 			{
 				_speedVec = osg::Vec3( _speedVec[0], -1 * _speedVec[1], _speedVec[2]);
 			}
-			else if ( pos.x()<halfW || pos.x()>160-halfW ) // TODO: remove hardcoded 160
-			// WIP - this should be replaced by score management instead
+//			else if ( _speedVec.x() + pos.x() < halfW || _speedVec.x() + pos.x()>160-halfW ) // TODO: remove hardcoded 160
+			else if ( _speedVec.x() + pos.x()>160-halfW ) // TODO: remove hardcoded 160
 			{
 				_speedVec = osg::Vec3( -1 * _speedVec[0], _speedVec[1], _speedVec[2]);
+			}
+			else if ( _speedVec.x() + pos.x() < halfW )
+			{
+				cout << "Player1 lost" << endl;
+				_speedVec = osg::Vec3(0.3f, 0.1f, 0.0f);
+				pos.x() = 80.0f;
+				pos.y() = 45.0f;
 			}
 
 		}
