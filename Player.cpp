@@ -4,18 +4,9 @@
 
 #include "Player.hpp"
 
-#include <iostream>
-
-using namespace std;
-
-
-Player::Player()
-:   _type(INVALID)
-{
-}
+Player::Player() {}
 
 Player::Player( float width, float height )
-:   _type(INVALID)
 {
     _size.set( width, height );
 
@@ -30,117 +21,6 @@ Player::Player( float width, float height )
     
     _speedVec = osg::Vec3(0.0f, 0.0f, 0.0f);
 }
-
-bool Player::update( const osgGA::GUIEventAdapter& ea, osg::Group* root )
-{
-    bool accelBall = false;
-	osg::Vec3 pos = getMatrix().getTrans();
-    float halfW = width() * 0.5f, halfH = height() * 0.5f;
-    switch ( _type )
-    {
-// TODO (maybe) declare update virtual and use polymorphism
-    case PLAYER1:
-        if ( ea.getEventType()==osgGA::GUIEventAdapter::KEYDOWN )
-        {
-            switch ( ea.getKey() )
-            {
-// TODO: 0.2 should not be harcoded, but a property of the game class
-            case osgGA::GUIEventAdapter::KEY_Up:
-                _speedVec = osg::Vec3(0.0f, 0.2f, 0.0f);
-                break;
-            case osgGA::GUIEventAdapter::KEY_Down:
-                _speedVec = osg::Vec3(0.0f, -0.2f, 0.0f);
-                break;
-// TODO: implement accelBall
-            case osgGA::GUIEventAdapter::KEY_Space:
-                accelBall = true;
-                break;
-            default: break;
-            }
-        }
-        else if ( ea.getEventType()==osgGA::GUIEventAdapter::KEYUP )
-            _speedVec = osg::Vec3();
-            
-		if ( pos.x()+ _speedVec.x() <halfW || pos.x()+ _speedVec.x() >160-halfW ) // TODO: remove hardcoded 160
-		{
-			return false;
-		}
-
-		if ( pos.y()+ _speedVec.y() <halfH || pos.y()+ _speedVec.y() >90-halfH ) // TODO: remove harcoded 90
-		{
-			return false;
-		}
-
-        break;
-// TODO: implement Player2 movement
-    case PLAYER2:
-        break;
-    case BALL:
-		if ( _speedVec.normalize() == 0 ) // start detection
-		{
-			_speedVec = osg::Vec3(0.3f, 0.1f, 0.0f); // TODO: randomize start vector
-		}
-		else
-		{	
-			if ( _speedVec.y() + pos.y()<halfH || _speedVec.y() + pos.y()>90-halfH ) // TODO: remove harcoded 90
-			{
-				_speedVec = osg::Vec3( _speedVec[0], -1 * _speedVec[1], _speedVec[2]);
-			}
-//			else if ( _speedVec.x() + pos.x() < halfW || _speedVec.x() + pos.x()>160-halfW ) // TODO: remove hardcoded 160
-			else if ( _speedVec.x() + pos.x()>160-halfW ) // TODO: remove hardcoded 160
-			{
-				_speedVec = osg::Vec3( -1 * _speedVec[0], _speedVec[1], _speedVec[2]);
-			}
-			else if ( _speedVec.x() + pos.x() < halfW )
-			{
-				cout << "Player1 lost" << endl;
-				cout << _score.getScore() << endl;
-				_speedVec = osg::Vec3(0.3f, 0.1f, 0.0f);
-				pos.x() = 80.0f;
-				pos.y() = 45.0f;
-			}
-
-		}
-		break;
-	
-    default: break;
-    }
-    
-    // only update for new frames
-    if ( ea.getEventType() !=osgGA::GUIEventAdapter::FRAME ) 
-        return true;
-	pos += _speedVec;
-	setMatrix( osg::Matrix::translate(pos) );
-	return true;
-
-    
-}
-
-bool Player::reboundH( const osgGA::GUIEventAdapter& ea, osg::Group* root )
-{
-	_speedVec = osg::Vec3( -1 * _speedVec[0], _speedVec[1], _speedVec[2]);	
-    osg::Vec3 pos = getMatrix().getTrans();
-    // DUP
-    if ( ea.getEventType() !=osgGA::GUIEventAdapter::FRAME ) 
-        return false;
-	pos += _speedVec;
-	setMatrix( osg::Matrix::translate(pos) );
-	return true;
-}
-
-bool Player::reboundV( const osgGA::GUIEventAdapter& ea, osg::Group* root )
-{
-	_speedVec = osg::Vec3( _speedVec[0], -1 * _speedVec[1], _speedVec[2]);	
-    osg::Vec3 pos = getMatrix().getTrans();
-    // DUP
-    if ( ea.getEventType() !=osgGA::GUIEventAdapter::FRAME ) 
-        return false;
-	pos += _speedVec;
-	setMatrix( osg::Matrix::translate(pos) );
-	return true;
-}
-
-bool heightTarget() {}
 
 bool Player::intersectsWith( Player* player ) const
 {

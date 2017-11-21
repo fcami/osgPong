@@ -2,8 +2,10 @@
 #include <osgViewer/Viewer>
 
 #include "GameController.hpp"
-#include "Player.hpp"
 #include "FindNamedNode.hpp"
+
+#include "Ball.hpp"
+#include "RealPlayer.hpp"
 
 #include <iostream>
 using namespace std;
@@ -14,17 +16,17 @@ bool GameController::handle( const osgGA::GUIEventAdapter& ea, osgGA::GUIActionA
 {
 	FindNamedNode findPlayer1("player1");
 	_root->accept(findPlayer1);
-	osg::ref_ptr<Player> player1 = static_cast<Player*> (findPlayer1.getNode());
+	osg::ref_ptr<RealPlayer> player1 = static_cast<RealPlayer*> (findPlayer1.getNode());
 	player1->update(ea, _root.get());
 
 	FindNamedNode findBall("ball");
 	_root->accept(findBall);
-	osg::ref_ptr<Player> ball = static_cast<Player*> (findBall.getNode());
+	osg::ref_ptr<Ball> ball = static_cast<Ball*> (findBall.getNode());
 	ball->update(ea, _root.get());
 
 	FindNamedNode findPlayer2("player2");
 	_root->accept(findPlayer2);
-	osg::ref_ptr<Player> player2 = static_cast<Player*> (findPlayer2.getNode());
+	osg::ref_ptr<RealPlayer> player2 = static_cast<RealPlayer*> (findPlayer2.getNode());
 	player2->update(ea, _root.get());
 	
 	// WIP: collision detection, 	

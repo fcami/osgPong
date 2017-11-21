@@ -1,5 +1,8 @@
 
 #include "Player.hpp"
+#include "RealPlayer.hpp"
+#include "Ball.hpp"
+
 #include "PongGame.hpp"
 
 #include <iostream>
@@ -12,19 +15,18 @@ osg::ref_ptr<osg::Node> PongGame::createGameGroup()
 	
 	// TODO: remove duplicated code
 	
-    osg::ref_ptr<Player> player1 = new Player(1.0f, 5.0f);
+    osg::ref_ptr<RealPlayer> player1 = new RealPlayer(1.0f, 5.0f);
     player1->setMatrix( osg::Matrix::translate(2.0f, 45.0f, 0.0f) );
-    player1->setPlayerType( Player::PLAYER1 );
+    player1->setPlayerNumber( 1 );
 	player1->setName( "player1" );
 
-    osg::ref_ptr<Player> player2 = new Player(1.0f, 5.0f);
+    osg::ref_ptr<RealPlayer> player2 = new RealPlayer(1.0f, 5.0f);
     player2->setMatrix( osg::Matrix::translate(158.0f, 45.0f, 0.0f) );
-    player2->setPlayerType( Player::PLAYER2 );
+    player2->setPlayerNumber( 2 );
 	player2->setName( "player2" );
 
-    osg::ref_ptr<Player> ball = new Player(1.0f, 1.0f);
+    osg::ref_ptr<Ball> ball = new Ball(1.0f, 1.0f);
 	ball->setMatrix( osg::Matrix::translate(80.0f, 45.0f, 0.0f) );
-	ball->setPlayerType( Player::BALL );
 	ball->setName( "ball" );
 
     gameGroup->addChild( player1.get() );
