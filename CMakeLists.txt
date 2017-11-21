@@ -12,7 +12,7 @@ macro( config_project PROJNAME LIBNAME )
 include_directories( ${${LIBNAME}_INCLUDE_DIR} )
 target_link_libraries( ${PROJNAME} ${${LIBNAME}_LIBRARY} )
 endmacro()
-add_executable(osgPong main.cpp Camera.cpp FindNamedNode.cpp GameController.cpp Player.cpp PongGame.cpp)
+add_executable(osgPong main.cpp Camera.cpp FindNamedNode.cpp GameController.cpp Player.cpp PongGame.cpp PongScore.cpp)
 config_project(osgPong OPENTHREADS )
 config_project(osgPong OSG )
 config_project(osgPong OSGDB )
@@ -25,6 +25,7 @@ config_project(osgPong Camera )
 config_project(osgPong FindNamedNode )
 config_project(osgPong GameController )
 config_project(osgPong PongGame )
+config_project(osgPong PongScore )
 
 
 

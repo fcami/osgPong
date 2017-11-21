@@ -94,6 +94,7 @@ bool Player::update( const osgGA::GUIEventAdapter& ea, osg::Group* root )
 			else if ( _speedVec.x() + pos.x() < halfW )
 			{
 				cout << "Player1 lost" << endl;
+				cout << _score.getScore() << endl;
 				_speedVec = osg::Vec3(0.3f, 0.1f, 0.0f);
 				pos.x() = 80.0f;
 				pos.y() = 45.0f;

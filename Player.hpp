@@ -2,6 +2,8 @@
 #include <osg/MatrixTransform>
 #include <osgGA/GUIEventAdapter>
 
+#include "PongScore.hpp"
+
 #define RAND(min, max) ((min) + (float)rand()/(RAND_MAX) * ((max)-(min)))
 
 class Player : public osg::MatrixTransform
@@ -38,5 +40,6 @@ protected:
     osg::Vec2 _size;
     osg::Vec3 _speedVec;
     PlayerType _type;
+    PongScore _score;
 };
 
