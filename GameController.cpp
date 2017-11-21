@@ -41,7 +41,6 @@ bool GameController::handle( const osgGA::GUIEventAdapter& ea, osgGA::GUIActionA
 	if ( fall )
 	{
 		int loser = ball->side();
-		cout << "loser is " << loser << endl;
 		if ( loser == 1)
 		{
 			ball->setMatrix( osg::Matrix::translate(80.0f, 45.0f, 0.0f) );
@@ -49,9 +48,16 @@ bool GameController::handle( const osgGA::GUIEventAdapter& ea, osgGA::GUIActionA
 		}
 		else if ( loser == 2)
 		{
+			// TODO: uncomment next line when Player2 is implemented
 			// ball->setMatrix( osg::Matrix::translate(80.0f, 45.0f, 0.0f) );
 			player1->incrScore();
 		}
 		cout << "score: player1: " << player1->getScore() << " player2: " << player2->getScore() << endl;
+		if ( player1->getScore() == 11 || player1->getScore() == 11 )
+		{
+			cout << "resetting scores" << endl;
+			player1->resetScore();
+			player2->resetScore();
+		}
 	}
 }
