@@ -16,5 +16,7 @@ public:
     bool reboundV( const osgGA::GUIEventAdapter& ea, osg::Group* root );
     int heightTarget(Player* player);
 
+	int side();
+
 };
 

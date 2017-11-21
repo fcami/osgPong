@@ -5,10 +5,9 @@
 
 using namespace std;
 
-
 bool Ball::update( const osgGA::GUIEventAdapter& ea, osg::Group* root )
 {
-    bool accelBall = false;
+	bool fall = false;
 	osg::Vec3 pos = getMatrix().getTrans();
     float halfW = width() * 0.5f, halfH = height() * 0.5f;
 
@@ -26,23 +25,22 @@ bool Ball::update( const osgGA::GUIEventAdapter& ea, osg::Group* root )
 		else if ( _speedVec.x() + pos.x()>160-halfW ) // TODO: remove hardcoded 160
 		{
 			_speedVec = osg::Vec3( -1 * _speedVec[0], _speedVec[1], _speedVec[2]);
+//			_speedVec = osg::Vec3(0.0f, 0.0f, 0.0f);
+			fall = true;
 		}
 		else if ( _speedVec.x() + pos.x() < halfW )
 		{
-			cout << "Player1 lost" << endl;
-			_speedVec = osg::Vec3(0.3f, 0.1f, 0.0f);
-			pos.x() = 80.0f;
-			pos.y() = 45.0f;
+			_speedVec = osg::Vec3(0.0f, 0.0f, 0.0f);
+			fall = true;
 		}
-
 	}
     
     // only update for new frames
     if ( ea.getEventType() !=osgGA::GUIEventAdapter::FRAME ) 
-        return true;
+        return false;
 	pos += _speedVec;
 	setMatrix( osg::Matrix::translate(pos) );
-	return true;
+	return fall;
 }
 
 
@@ -68,6 +66,18 @@ bool Ball::reboundV( const osgGA::GUIEventAdapter& ea, osg::Group* root )
 	pos += _speedVec;
 	setMatrix( osg::Matrix::translate(pos) );
 	return true;
+}
+
+// so hardcoded, so evil
+int Ball::side()
+{
+	osg::Vec3 pos = getMatrix().getTrans();
+	if ( pos.x() < 10 )
+		return 1;
+	else if ( pos.x() > 150 )
+		return 2;
+	else
+		return pos.x();
 }
 
 int heightTarget(Player* player)

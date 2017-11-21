@@ -12,7 +12,7 @@ bool RealPlayer::update( const osgGA::GUIEventAdapter& ea, osg::Group* root )
     float halfW = width() * 0.5f, halfH = height() * 0.5f;
     switch ( _number )
     {
-// TODO 
+// TODO
     case 1:
         if ( ea.getEventType()==osgGA::GUIEventAdapter::KEYDOWN )
         {
@@ -25,7 +25,7 @@ bool RealPlayer::update( const osgGA::GUIEventAdapter& ea, osg::Group* root )
             case osgGA::GUIEventAdapter::KEY_Down:
                 _speedVec = osg::Vec3(0.0f, -0.2f, 0.0f);
                 break;
-// TODO: implement accelBall
+// TODO: implement accelBall?
             case osgGA::GUIEventAdapter::KEY_Space:
                 accelBall = true;
                 break;
@@ -60,3 +60,20 @@ bool RealPlayer::update( const osgGA::GUIEventAdapter& ea, osg::Group* root )
 	setMatrix( osg::Matrix::translate(pos) );
 	return true;
 }
+
+const int RealPlayer::getScore()
+{
+	return _score.getScore();
+}
+
+void RealPlayer::incrScore()
+{
+	_score.incrScore();
+}
+
+void RealPlayer::resetScore()
+{
+	_score.resetScore();
+}
+
+
