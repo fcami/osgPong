@@ -35,7 +35,6 @@ bool GameController::handle( const osgGA::GUIEventAdapter& ea, osgGA::GUIActionA
 	
 	// end threads
 	
-	// WIP: collision detection, 	
 	if ( ball->intersectsWith(player1) || ball->intersectsWith(player2) )
 	{
 		cout << "intersection detected" <<endl;
@@ -67,7 +66,6 @@ bool GameController::handle( const osgGA::GUIEventAdapter& ea, osgGA::GUIActionA
 			cout << "resetting scores" << endl;
 			player1->resetScore();
 			player2->resetScore();
-			cout << "resetting scores" << endl;
 			score->setText(std::to_string(player1->getScore())+"   "+std::to_string(player2->getScore()));
 		}
 	}
