@@ -7,10 +7,7 @@
 #include "Ball.hpp"
 #include "RealPlayer.hpp"
 
-//#include <osg/Node>
-//#include <osgViewer/Viewer>
 #include <osgText/Text>
-
 
 #include <iostream>
 using namespace std;
@@ -59,7 +56,6 @@ bool GameController::handle( const osgGA::GUIEventAdapter& ea, osgGA::GUIActionA
 			// ball->setMatrix( osg::Matrix::translate(80.0f, 45.0f, 0.0f) );
 			player1->incrScore();
 		}
-		cout << "score: player1: " << player1->getScore() << " player2: " << player2->getScore() << endl;
 
 		FindNamedNode findScore("score");
 		_root->accept(findScore);
@@ -71,7 +67,8 @@ bool GameController::handle( const osgGA::GUIEventAdapter& ea, osgGA::GUIActionA
 			cout << "resetting scores" << endl;
 			player1->resetScore();
 			player2->resetScore();
-			score->setText(player1->getScore()+"   "+player2->getScore());
+			cout << "resetting scores" << endl;
+			score->setText(std::to_string(player1->getScore())+"   "+std::to_string(player2->getScore()));
 		}
 	}
 }
