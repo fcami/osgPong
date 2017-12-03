@@ -6,8 +6,7 @@
 
 #include "Ball.hpp"
 #include "RealPlayer.hpp"
-
-#include <osgText/Text>
+#include "PongScore.hpp"
 
 #include <iostream>
 using namespace std;
@@ -59,12 +58,12 @@ bool GameController::handle( const osgGA::GUIEventAdapter& ea, osgGA::GUIActionA
 		// score kludge starts here
 		FindNamedNode findScorep1("scorep1");
 		_root->accept(findScorep1);
-		osg::ref_ptr<osgText::Text> scorep1 = static_cast<osgText::Text*> (findScorep1.getNode());
+		osg::ref_ptr<PongScore> scorep1 = static_cast<PongScore*> (findScorep1.getNode());
 		scorep1->setText(std::to_string(player1->getScore()));
 
 		FindNamedNode findScorep2("scorep2");
 		_root->accept(findScorep2);
-		osg::ref_ptr<osgText::Text> scorep2 = static_cast<osgText::Text*> (findScorep2.getNode());
+		osg::ref_ptr<PongScore> scorep2 = static_cast<PongScore*> (findScorep2.getNode());
 		scorep2->setText(std::to_string(player2->getScore()));
 		// score kludge ends here
 
