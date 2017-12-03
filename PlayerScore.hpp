@@ -1,8 +1,8 @@
 
-class PongScore
+class PlayerScore
 {
 public:
-	PongScore(); 
+	PlayerScore(); 
 	const int getScore();
 	void incrScore();
 	void resetScore();

@@ -1,5 +1,5 @@
 #include "Player.hpp"
-#include "PongScore.hpp"
+#include "PlayerScore.hpp"
 
 //#include <osgText/Font>
 //#include <osgText/Text>
@@ -15,7 +15,7 @@ public:
 	const int getScore();
 
 protected:
-	PongScore _score;
+	PlayerScore _score;
 //	osg::ref_ptr<osgText::Text> scoreText;
 	int _number;
 };
