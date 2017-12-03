@@ -56,17 +56,25 @@ bool GameController::handle( const osgGA::GUIEventAdapter& ea, osgGA::GUIActionA
 			player1->incrScore();
 		}
 
-		FindNamedNode findScore("score");
-		_root->accept(findScore);
-		osg::ref_ptr<osgText::Text> score = static_cast<osgText::Text*> (findScore.getNode());
-		score->setText(std::to_string(player1->getScore())+"   "+std::to_string(player2->getScore()));
+		// score kludge starts here
+		FindNamedNode findScorep1("scorep1");
+		_root->accept(findScorep1);
+		osg::ref_ptr<osgText::Text> scorep1 = static_cast<osgText::Text*> (findScorep1.getNode());
+		scorep1->setText(std::to_string(player1->getScore()));
+
+		FindNamedNode findScorep2("scorep2");
+		_root->accept(findScorep2);
+		osg::ref_ptr<osgText::Text> scorep2 = static_cast<osgText::Text*> (findScorep2.getNode());
+		scorep2->setText(std::to_string(player2->getScore()));
+		// score kludge ends here
+
 		
 		if ( player1->getScore() == 11 || player1->getScore() == 11 )
 		{
 			cout << "resetting scores" << endl;
 			player1->resetScore();
 			player2->resetScore();
-			score->setText(std::to_string(player1->getScore())+"   "+std::to_string(player2->getScore()));
+			// no kludge here
 		}
 	}
 }

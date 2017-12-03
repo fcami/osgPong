@@ -13,6 +13,6 @@ public:
 	const int getScore();
 
 protected:
-    PongScore _score;
+	PongScore _score;
 	int _number;
 };
