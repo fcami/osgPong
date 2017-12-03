@@ -27,6 +27,7 @@ bool Ball::update( const osgGA::GUIEventAdapter& ea, osg::Group* root )
 			_speedVec = osg::Vec3( -1 * _speedVec[0], _speedVec[1], _speedVec[2]);
 //			_speedVec = osg::Vec3(0.0f, 0.0f, 0.0f);
 			fall = true;
+			return fall;
 		}
 		else if ( _speedVec.x() + pos.x() < halfW )
 		{
