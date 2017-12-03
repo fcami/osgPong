@@ -24,6 +24,7 @@ public:
 protected:
     osg::Vec2 _size;
     osg::Vec3 _speedVec;
+    void init( float width, float height );
 };
 
 #endif

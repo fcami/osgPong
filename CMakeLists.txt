@@ -24,9 +24,9 @@ config_project(osgPong Player )
 config_project(osgPong Camera )
 config_project(osgPong FindNamedNode )
 config_project(osgPong GameController )
+config_project(osgPong RealPlayer )
 config_project(osgPong PongGame )
 config_project(osgPong PongScore )
-config_project(osgPong RealPlayer )
 config_project(osgPong Ball )
 
 

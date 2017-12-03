@@ -8,6 +8,19 @@ Player::Player() {}
 
 Player::Player( float width, float height )
 {
+    init( width, height);
+}
+
+bool Player::intersectsWith( Player* player ) const
+{
+    osg::Vec3 pos = getMatrix().getTrans();
+    osg::Vec3 pos2 = player->getMatrix().getTrans();
+    return fabs(pos[0] - pos2[0]) < (width() + player->width()) * 0.5f &&
+           fabs(pos[1] - pos2[1]) < (height() + player->height()) * 0.5f;
+}
+
+void Player::init( float width, float height )
+{
     _size.set( width, height );
 
     osg::ref_ptr<osg::Geode> geode = new osg::Geode;
@@ -20,12 +33,4 @@ Player::Player( float width, float height )
     addChild( geode.get() );
     
     _speedVec = osg::Vec3(0.0f, 0.0f, 0.0f);
-}
-
-bool Player::intersectsWith( Player* player ) const
-{
-    osg::Vec3 pos = getMatrix().getTrans();
-    osg::Vec3 pos2 = player->getMatrix().getTrans();
-    return fabs(pos[0] - pos2[0]) < (width() + player->width()) * 0.5f &&
-           fabs(pos[1] - pos2[1]) < (height() + player->height()) * 0.5f;
 }
