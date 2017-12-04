@@ -1,21 +1,20 @@
 #include "Player.hpp"
 #include "PlayerScore.hpp"
-
-//#include <osgText/Font>
-//#include <osgText/Text>
+//#include "PongScore.hpp"
 
 class RealPlayer : public Player {       
 
 public:
 	using Player::Player;
+//	RealPlayer ( float width, float height );
 	bool update( const osgGA::GUIEventAdapter& ea, osg::Group* root );
-	void setPlayerNumber ( const int number ) { _number = number; }
+	bool setPlayerNumber ( const int number );
 	void resetScore();
 	void incrScore();
 	const int getScore();
 
 protected:
 	PlayerScore _score;
-//	osg::ref_ptr<osgText::Text> scoreText;
+//	PongScore _scoreText;
 	int _number;
 };

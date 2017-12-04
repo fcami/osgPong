@@ -5,6 +5,14 @@
 
 using namespace std;
 
+/*
+RealPlayer::RealPlayer ( float width, float height )
+{
+    init( width, height);
+    _number = 0;
+}
+*/
+
 bool RealPlayer::update( const osgGA::GUIEventAdapter& ea, osg::Group* root )
 {
     bool accelBall = false;
@@ -76,4 +84,21 @@ void RealPlayer::resetScore()
 	_score.resetScore();
 }
 
+bool RealPlayer::setPlayerNumber ( const int number )
+{
+	_number = number;
+/*	if ( _number == 1 )
+	{
+		_scoreText.setScoreSide(PongScore::LEFT);
+		return true;
+	}
+	else if ( _number == 2 )
+	{
+		_scoreText.setScoreSide(PongScore::RIGHT);
+		return true;
+	}
+	else
+		return false;*/
+	return true;
+}
 

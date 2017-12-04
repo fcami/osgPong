@@ -55,7 +55,7 @@ bool GameController::handle( const osgGA::GUIEventAdapter& ea, osgGA::GUIActionA
 			player1->incrScore();
 		}
 
-		// score kludge starts here
+		// score kludge starts here: RealPlayer::incScore() should be enough
 		FindNamedNode findScorep1("scorep1");
 		_root->accept(findScorep1);
 		osg::ref_ptr<PongScore> scorep1 = static_cast<PongScore*> (findScorep1.getNode());
@@ -66,14 +66,15 @@ bool GameController::handle( const osgGA::GUIEventAdapter& ea, osgGA::GUIActionA
 		osg::ref_ptr<PongScore> scorep2 = static_cast<PongScore*> (findScorep2.getNode());
 		scorep2->setText(std::to_string(player2->getScore()));
 		// score kludge ends here
-
 		
 		if ( player1->getScore() == 11 || player1->getScore() == 11 )
 		{
 			cout << "resetting scores" << endl;
 			player1->resetScore();
 			player2->resetScore();
-			// no kludge here
+			// ditto, see above kludge
+			scorep1->setText(std::to_string(player1->getScore()));
+			scorep2->setText(std::to_string(player2->getScore()));
 		}
 	}
 }

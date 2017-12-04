@@ -1,4 +1,7 @@
 
+#ifndef PONGSCORE
+#define PONGSCORE
+
 #include <osgText/Font>
 #include <osgText/Text>
 
@@ -15,3 +18,5 @@ public:
 protected:
 	ScoreSide _side;
 };
+
+#endif
