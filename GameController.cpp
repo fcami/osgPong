@@ -77,4 +77,6 @@ bool GameController::handle( const osgGA::GUIEventAdapter& ea, osgGA::GUIActionA
 			scorep2->setText(std::to_string(player2->getScore()));
 		}
 	}
+	// see https://github.com/openscenegraph/OpenSceneGraph/blob/master/src/osgGA/GUIEventHandler.cpp
+	return true;
 }

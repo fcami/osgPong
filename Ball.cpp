@@ -85,4 +85,5 @@ int Ball::side()
 int heightTarget(Player* player)
 {
 	// obvious TODO
+	return 0;
 }
